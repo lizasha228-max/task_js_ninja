@@ -308,51 +308,49 @@ function useDisabled(flag) {
     setTimeout(() => {
       dataGet.style.backgroundColor = "blue";
     }, 3000);
-  } else{
-      alert(`Your flag is ${flag}`);
+  } else {
+    alert(`Your flag is ${flag}`);
   }
 }
 
 const dataId = document.querySelectorAll(".info__block [id]");
 console.log(dataId);
 
-function colorChange(colorData,number){
-    if(colorData.length !== 0){
-      let firstEl = colorData[0];
-      let secondElement = colorData[1];
-      // firstEl.style.backgroundColor = "green";
-      switch(number){
-            case 0:
-                  firstEl.style.backgroundColor = "green";
-                  break;
-            case 1:
-                  secondElement.style.backgroundColor = "blue";
-                  break;
-      }
+function colorChange(colorData, number) {
+  if (colorData.length !== 0) {
+    let firstEl = colorData[0];
+    let secondElement = colorData[1];
+    // firstEl.style.backgroundColor = "green";
+    switch (number) {
+      case 0:
+        firstEl.style.backgroundColor = "green";
+        break;
+      case 1:
+        secondElement.style.backgroundColor = "blue";
+        break;
     }
-
+  }
 }
 
 // colorChange(dataId,1);
 
-const fruits = [1,2,3,4,5,6,7,8,9];
+const fruits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const res1 = [];
 
 const res2 = [];
 
-for(let i = 0; i <= fruits.length - 1; i++){
-      if(fruits[i] % 2 === 0){
-            res1.push(fruits[i]);
-      }
+for (let i = 0; i <= fruits.length - 1; i++) {
+  if (fruits[i] % 2 === 0) {
+    res1.push(fruits[i]);
+  }
 }
 
-for(let i = fruits.length -1; i >= 0; i--){
-     if(fruits[i] % 2 !== 0){
-      res2.push(fruits[i]);
-     }
+for (let i = fruits.length - 1; i >= 0; i--) {
+  if (fruits[i] % 2 !== 0) {
+    res2.push(fruits[i]);
+  }
 }
-
 
 // dataObj["fullprice"] = "50";
 // dataObj.price = 25;
@@ -370,9 +368,6 @@ for(let i = fruits.length -1; i >= 0; i--){
 
 // checkData(dataObj);
 
-
-
-
 // const dataobjAssign = Object.assign({}, dataObj);
 
 // dataobjAssign.nickname = "Solnce";
@@ -387,15 +382,12 @@ for(let i = fruits.length -1; i >= 0; i--){
 // console.log(dataObj, "dataobj");
 // console.log(infoObj);
 
-
-
 // let dataObj = {
 //       nickname: "luna",
 //       fullname: "luntiao luntic",
 //       age: 55,
 //       gender: "cat"
 // }
-
 
 // const dataInfo = JSON.stringify(dataObj);
 
@@ -407,32 +399,46 @@ for(let i = fruits.length -1; i >= 0; i--){
 
 // console.log(infoObj);
 
-async function getdataUser(){
-const dataUserList = await fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
-      .then(json => json)
-      console.log(dataUserList);
-const getInfo = document.getElementById("user__name");
-const getDataEmail = document.getElementById("user__email");
-for (let i = 0; i < dataUserList.length; i++){
-      console.log("dataUserList");
-      const createLi = document.createElement("li");
-      const createLiEmail = document.createElement("li");
-      getInfo.appendChild(createLi);
-      getDataEmail.appendChild(createLiEmail);
-      createLi.textContent = dataUserList[i].name;
-      createLiEmail.textContent = dataUserList[i].email;
-}
+async function getdataUser() {
+  const dataUserList = await fetch("https://jsonplaceholder.typicode.com/users")
+    .then((response) => response.json())
+    .then((json) => json);
+  console.log(dataUserList);
+  const getInfo = document.getElementById("user__name");
+  const getDataEmail = document.getElementById("user__email");
+  for (let i = 0; i < dataUserList.length; i++) {
+    console.log("dataUserList");
+    const createLi = document.createElement("li");
+    const createLiEmail = document.createElement("li");
+    getInfo.appendChild(createLi);
+    getDataEmail.appendChild(createLiEmail);
+    createLi.textContent = dataUserList[i].name;
+    createLiEmail.textContent = dataUserList[i].email;
+  }
 }
 
 setTimeout(() => {
-      console.log("before");
-      getdataUser()
-      console.log("after");
-},2000)
+  console.log("before");
+  getdataUser();
+  console.log("after");
+}, 2000);
 
+async function showTask() {
+  const allTasks = await fetch("https://jsonplaceholder.typicode.com/todos")
+    .then((response) => response.json())
+    .then((json) => json);
+  console.log(allTasks);
+  const firstTask = allTasks.slice(0, 10);
+  console.log(firstTask);
+  for (let i = 0; i < firstTask.length; i++) {
+      const mainTitle = document.getElementById("task__ten");
+      const createDiv = document.createElement("div");
+      mainTitle.append(createDiv);
+      createDiv.textContent = firstTask[i].title;
+    if (firstTask[i].completed === true) {
+      createDiv.classList.add("done");
+    }
+  }
+}
 
-
-
-
-
+showTask();
