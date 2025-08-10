@@ -1,0 +1,27 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.info__block{
+    height: 500px;
+    background-color: grey;
+}
+
+.user__list{
+    height: 300px;
+    background-color: lightyellow;
+}
+
+.user__data{
+    display: flex;
+    width: 100%;
+}
+
+.user__list li{
+color: black;
+font-size: 25px;
+}
+
+
+
