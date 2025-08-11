@@ -27,4 +27,11 @@ font-size: 25px;
     background-color: yellow;
 }
 
+#user-card{
+    display:flex;
+    background-color: lightgreen;
+    height: 500px;
+    font-size:20px;
+}
+
 

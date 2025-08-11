@@ -442,3 +442,49 @@ async function showTask() {
 }
 
 showTask();
+
+async function showPosts(){
+const posts = await fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(json => json);
+      console.log("jnkjnkjnkn",posts);
+      for (let i = 0; i <= posts.length; i++){
+        const newTitle = document.getElementById("title");
+        const paragraf = document.createElement("p");
+        newTitle.append(paragraf);
+        paragraf.textContent = posts[i].title;
+        const newBody = document.getElementById("body");
+        const paragrafBody = document.createElement("p");
+        newBody.append(paragrafBody);
+        paragrafBody.textContent = posts[i].body;
+        if (i === 5){
+            break
+        }
+      }
+}
+
+showPosts();
+
+async function getUserList(){
+const dataList = await fetch("https://jsonplaceholder.typicode.com/users")
+    .then((response) => response.json())
+    .then((json) => json);
+    console.log(dataList);
+    for (let i = 0; i < dataList.length; i++){
+const usersDataname = document.getElementById("users__name");
+const usersDataPhone = document.getElementById("users__phone");
+const usersDataSite = document.getElementById("web__site");
+const paragData = document.createElement("p");
+const paragPhone = document.createElement("p");
+const paragSite = document.createElement("p");
+usersDataname.append(paragData);
+paragData.textContent = dataList[i].name;
+usersDataPhone.append(paragPhone);
+paragPhone.textContent = dataList[i].phone;
+usersDataSite.append(paragSite);
+paragSite.textContent = dataList[i].website;
+    }
+}
+
+
+
