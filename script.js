@@ -400,23 +400,23 @@ for (let i = fruits.length - 1; i >= 0; i--) {
 // console.log(infoObj);
 
 const getneralRequest = {
-	urlsUsers: 'https://jsonplaceholder.typicode.com/users'
+	urlsUsers: 'https://jsonplaceholder.typicode.com/users',
+	urlsTodos: 'https://jsonplaceholder.typicode.com/todos',
+	urlsPosts: 'https://jsonplaceholder.typicode.com/posts'
 };
 
 async function getdataUser(a1) {
 	const { urlsUsers } = a1;
 
-	console.log('All users ', urlsUsers);
-
 	const dataUserList = await fetch(urlsUsers).then((response) => response.json()).then((json) => json);
-	console.log(dataUserList);
+
 	const getInfo = document.getElementById('user__name');
 	const getDataEmail = document.getElementById('user__email');
-	for (let i = 0; i < dataUserList.length; i++) {
-		console.log('dataUserList');
 
+	for (let i = 0; i < dataUserList.length; i++) {
 		const createLi = document.createElement('li');
 		const createLiEmail = document.createElement('li');
+
 		getInfo.appendChild(createLi);
 		getDataEmail.appendChild(createLiEmail);
 		createLi.textContent = dataUserList[i].name;
@@ -431,12 +431,10 @@ setTimeout(() => {
 }, 2000);
 
 async function showTask(a2) {
-	const allTasks = await fetch('https://jsonplaceholder.typicode.com/todos')
-		.then((response) => response.json())
-		.then((json) => json);
-	console.log(allTasks);
+	const { urlsTodos } = a2;
+	const allTasks = await fetch(urlsTodos).then((response) => response.json()).then((json) => json);
+
 	const firstTask = allTasks.slice(0, 10);
-	console.log(firstTask);
 	for (let i = 0; i < firstTask.length; i++) {
 		const mainTitle = document.getElementById('task__ten');
 		const createDiv = document.createElement('div');
@@ -448,13 +446,12 @@ async function showTask(a2) {
 	}
 }
 
-showTask();
+showTask(getneralRequest);
 
 async function showPosts(a3) {
-	const posts = await fetch('https://jsonplaceholder.typicode.com/posts')
-		.then((response) => response.json())
-		.then((json) => json);
-	console.log('jnkjnkjnkn', posts);
+	const { urlsPosts } = a3;
+	const posts = await fetch(urlsPosts).then((response) => response.json()).then((json) => json);
+
 	for (let i = 0; i <= posts.length; i++) {
 		const newTitle = document.getElementById('title');
 		const paragraf = document.createElement('p');
@@ -470,13 +467,13 @@ async function showPosts(a3) {
 	}
 }
 
-showPosts();
+showPosts(getneralRequest);
 
 async function getUserList(a4) {
-	const dataList = await fetch('https://jsonplaceholder.typicode.com/users')
-		.then((response) => response.json())
-		.then((json) => json);
-	console.log(dataList);
+	const { urlsUsers } = getneralRequest;
+
+	const dataList = await fetch(urlsUsers).then((response) => response.json()).then((json) => json);
+
 	for (let i = 0; i < dataList.length; i++) {
 		const usersDataname = document.getElementById('users__name');
 		const usersDataPhone = document.getElementById('users__phone');
