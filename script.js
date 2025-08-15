@@ -303,53 +303,53 @@
 // console.log(res);
 
 function useDisabled(flag) {
-  if (flag === true) {
-    const dataGet = document.querySelector(".block");
-    setTimeout(() => {
-      dataGet.style.backgroundColor = "blue";
-    }, 3000);
-  } else {
-    alert(`Your flag is ${flag}`);
-  }
+	if (flag === true) {
+		const dataGet = document.querySelector('.block');
+		setTimeout(() => {
+			dataGet.style.backgroundColor = 'blue';
+		}, 3000);
+	} else {
+		alert(`Your flag is ${flag}`);
+	}
 }
 
-const dataId = document.querySelectorAll(".info__block [id]");
+const dataId = document.querySelectorAll('.info__block [id]');
 console.log(dataId);
 
 function colorChange(colorData, number) {
-  if (colorData.length !== 0) {
-    let firstEl = colorData[0];
-    let secondElement = colorData[1];
-    // firstEl.style.backgroundColor = "green";
-    switch (number) {
-      case 0:
-        firstEl.style.backgroundColor = "green";
-        break;
-      case 1:
-        secondElement.style.backgroundColor = "blue";
-        break;
-    }
-  }
+	if (colorData.length !== 0) {
+		let firstEl = colorData[0];
+		let secondElement = colorData[1];
+		// firstEl.style.backgroundColor = "green";
+		switch (number) {
+			case 0:
+				firstEl.style.backgroundColor = 'green';
+				break;
+			case 1:
+				secondElement.style.backgroundColor = 'blue';
+				break;
+		}
+	}
 }
 
 // colorChange(dataId,1);
 
-const fruits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const fruits = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
 
 const res1 = [];
 
 const res2 = [];
 
 for (let i = 0; i <= fruits.length - 1; i++) {
-  if (fruits[i] % 2 === 0) {
-    res1.push(fruits[i]);
-  }
+	if (fruits[i] % 2 === 0) {
+		res1.push(fruits[i]);
+	}
 }
 
 for (let i = fruits.length - 1; i >= 0; i--) {
-  if (fruits[i] % 2 !== 0) {
-    res2.push(fruits[i]);
-  }
+	if (fruits[i] % 2 !== 0) {
+		res2.push(fruits[i]);
+	}
 }
 
 // dataObj["fullprice"] = "50";
@@ -399,92 +399,105 @@ for (let i = fruits.length - 1; i >= 0; i--) {
 
 // console.log(infoObj);
 
-async function getdataUser() {
-  const dataUserList = await fetch("https://jsonplaceholder.typicode.com/users")
-    .then((response) => response.json())
-    .then((json) => json);
-  console.log(dataUserList);
-  const getInfo = document.getElementById("user__name");
-  const getDataEmail = document.getElementById("user__email");
-  for (let i = 0; i < dataUserList.length; i++) {
-    console.log("dataUserList");
-    const createLi = document.createElement("li");
-    const createLiEmail = document.createElement("li");
-    getInfo.appendChild(createLi);
-    getDataEmail.appendChild(createLiEmail);
-    createLi.textContent = dataUserList[i].name;
-    createLiEmail.textContent = dataUserList[i].email;
-  }
+const getneralRequest = {
+	urlsUsers: 'https://jsonplaceholder.typicode.com/users'
+};
+
+async function getdataUser(a1) {
+	const { urlsUsers } = a1;
+
+	console.log('All users ', urlsUsers);
+
+	const dataUserList = await fetch(urlsUsers).then((response) => response.json()).then((json) => json);
+	console.log(dataUserList);
+	const getInfo = document.getElementById('user__name');
+	const getDataEmail = document.getElementById('user__email');
+	for (let i = 0; i < dataUserList.length; i++) {
+		console.log('dataUserList');
+
+		const createLi = document.createElement('li');
+		const createLiEmail = document.createElement('li');
+		getInfo.appendChild(createLi);
+		getDataEmail.appendChild(createLiEmail);
+		createLi.textContent = dataUserList[i].name;
+		createLiEmail.textContent = dataUserList[i].email;
+	}
 }
 
 setTimeout(() => {
-  console.log("before");
-  getdataUser();
-  console.log("after");
+	console.log('before');
+	getdataUser(getneralRequest);
+	console.log('after');
 }, 2000);
 
-async function showTask() {
-  const allTasks = await fetch("https://jsonplaceholder.typicode.com/todos")
-    .then((response) => response.json())
-    .then((json) => json);
-  console.log(allTasks);
-  const firstTask = allTasks.slice(0, 10);
-  console.log(firstTask);
-  for (let i = 0; i < firstTask.length; i++) {
-      const mainTitle = document.getElementById("task__ten");
-      const createDiv = document.createElement("div");
-      mainTitle.append(createDiv);
-      createDiv.textContent = firstTask[i].title;
-    if (firstTask[i].completed === true) {
-      createDiv.classList.add("done");
-    }
-  }
+async function showTask(a2) {
+	const allTasks = await fetch('https://jsonplaceholder.typicode.com/todos')
+		.then((response) => response.json())
+		.then((json) => json);
+	console.log(allTasks);
+	const firstTask = allTasks.slice(0, 10);
+	console.log(firstTask);
+	for (let i = 0; i < firstTask.length; i++) {
+		const mainTitle = document.getElementById('task__ten');
+		const createDiv = document.createElement('div');
+		mainTitle.append(createDiv);
+		createDiv.textContent = firstTask[i].title;
+		if (firstTask[i].completed === true) {
+			createDiv.classList.add('done');
+		}
+	}
 }
 
 showTask();
 
-async function showPosts(){
-const posts = await fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(json => json);
-      console.log("jnkjnkjnkn",posts);
-      for (let i = 0; i <= posts.length; i++){
-        const newTitle = document.getElementById("title");
-        const paragraf = document.createElement("p");
-        newTitle.append(paragraf);
-        paragraf.textContent = posts[i].title;
-        const newBody = document.getElementById("body");
-        const paragrafBody = document.createElement("p");
-        newBody.append(paragrafBody);
-        paragrafBody.textContent = posts[i].body;
-        if (i === 5){
-            break
-        }
-      }
+async function showPosts(a3) {
+	const posts = await fetch('https://jsonplaceholder.typicode.com/posts')
+		.then((response) => response.json())
+		.then((json) => json);
+	console.log('jnkjnkjnkn', posts);
+	for (let i = 0; i <= posts.length; i++) {
+		const newTitle = document.getElementById('title');
+		const paragraf = document.createElement('p');
+		newTitle.append(paragraf);
+		paragraf.textContent = posts[i].title;
+		const newBody = document.getElementById('body');
+		const paragrafBody = document.createElement('p');
+		newBody.append(paragrafBody);
+		paragrafBody.textContent = posts[i].body;
+		if (i === 5) {
+			break;
+		}
+	}
 }
 
 showPosts();
 
-async function getUserList(){
-const dataList = await fetch("https://jsonplaceholder.typicode.com/users")
-    .then((response) => response.json())
-    .then((json) => json);
-    console.log(dataList);
-    for (let i = 0; i < dataList.length; i++){
-const usersDataname = document.getElementById("users__name");
-const usersDataPhone = document.getElementById("users__phone");
-const usersDataSite = document.getElementById("web__site");
-const paragData = document.createElement("p");
-const paragPhone = document.createElement("p");
-const paragSite = document.createElement("p");
-usersDataname.append(paragData);
-paragData.textContent = dataList[i].name;
-usersDataPhone.append(paragPhone);
-paragPhone.textContent = dataList[i].phone;
-usersDataSite.append(paragSite);
-paragSite.textContent = dataList[i].website;
-    }
+async function getUserList(a4) {
+	const dataList = await fetch('https://jsonplaceholder.typicode.com/users')
+		.then((response) => response.json())
+		.then((json) => json);
+	console.log(dataList);
+	for (let i = 0; i < dataList.length; i++) {
+		const usersDataname = document.getElementById('users__name');
+		const usersDataPhone = document.getElementById('users__phone');
+		const usersDataSite = document.getElementById('web__site');
+		const paragData = document.createElement('p');
+		const paragPhone = document.createElement('p');
+		const paragSite = document.createElement('p');
+		usersDataname.append(paragData);
+		paragData.textContent = dataList[i].name;
+		usersDataPhone.append(paragPhone);
+		paragPhone.textContent = dataList[i].phone;
+		usersDataSite.append(paragSite);
+		paragSite.textContent = dataList[i].website;
+	}
 }
 
+function showVisiblyCheck() {
+	const dataCkecked = document.getElementById('checkedId');
+	console.log('DATA_CHECKED', dataCkecked);
 
-
+	dataCkecked.addEventListener('change', function(event) {
+		console.log('EEEEE', event);
+	});
+}
